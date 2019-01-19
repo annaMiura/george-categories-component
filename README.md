@@ -60,7 +60,7 @@ For game data (good for presentations):
 From within root directory, execute `gameDataSchema.sql`:
 
 ```sh
-mysql -u root < database/gameDataSchema.sql
+mysql -u root -p < database/gameDataSchema.sql
 ```
 
 (if your MySQL requires a password use: `mysql -u root -p < database/gameDataSchema.sql`)

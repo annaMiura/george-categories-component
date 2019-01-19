@@ -3,6 +3,7 @@ import RecentBroadcasts from './RecentBroadcasts.jsx';
 import RecentHighlights from './RecentHighlights.jsx';
 import PopularClips from './PopularClips.jsx';
 import AllVideos from './AllVideos.jsx';
+import { Switch, HashRouter, Route } from 'react-router-dom';
 
 export default class Categorized_Lists extends React.Component {
   constructor(props) {
@@ -49,12 +50,26 @@ export default class Categorized_Lists extends React.Component {
       return (<div data-testid="loading-div">Loading ...</div>);
     } else {
       return (
+        <HashRouter>
+          <Switch>
+        <Route exact={true} path="/" render={ () => (
         <div data-testid="main-container">
           <RecentBroadcasts videos={this.state.recentBroadcasts} />
           <RecentHighlights videos={this.state.recentHighlights} />
           <PopularClips videos={this.state.popularClips} />
           <AllVideos videos={this.state.allVideos} />
-        </div>
+          </div>
+         )} />
+        <Route exact={true} path="/videos" render={ () => (
+        <div data-testid="main-container">
+          <RecentBroadcasts videos={this.state.recentBroadcasts} />
+          <RecentHighlights videos={this.state.recentHighlights} />
+          <PopularClips videos={this.state.popularClips} />
+          <AllVideos videos={this.state.allVideos} />
+          </div>
+         )} />
+          </Switch>
+        </HashRouter>
       );
     }
   };

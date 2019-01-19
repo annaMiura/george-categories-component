@@ -1,8 +1,10 @@
 import React from 'react';
 import Carousel from 'nuka-carousel';
+import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import SlideGenerator from './SlideGenerator.jsx';
 import { Container, Titles, ExpandLink } from './Styles.jsx';
 import { PrevButton, NextButton } from './Buttons.jsx';
+import Videos from './Videos.jsx';
 
 export default class CarouselGenerator extends React.Component {
   render() {
@@ -11,9 +13,16 @@ export default class CarouselGenerator extends React.Component {
     });
 
     return (
+      <Router>
+        <Switch>
+
       <div>
         <Container className="mainContainer">
-          <Titles>{this.props.title} <ExpandLink href={this.props.videos[0].url}>Expand All ></ExpandLink></Titles>
+            <Titles>{this.props.title}
+              <ExpandLink>
+              <Link to="/videosAll">Expand All ></Link>
+              </ExpandLink>
+            </Titles>
           <Carousel
             slidesToShow={2}
             wrapAround={false}
@@ -33,6 +42,10 @@ export default class CarouselGenerator extends React.Component {
           </Carousel>
         </Container>
       </div>
+
+      <Route path="/videosAll" component={Videos} />
+      </Switch>
+      </Router>
     );
   };
 };
